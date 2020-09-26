@@ -2,6 +2,19 @@
 
 Docker running Nginx, PHP-FPM, Composer, MySQL and PHPMyAdmin.
 
+# `FIRST OF ALL:`
+You must ensure that you have cloned the `dbths-batch-91-directory-client-admin` and `dbths-batch-91-directory-api` repositories.
+___
+
+### `Development Environment`
+
+- docker-compose up -d --build
+- go to your /etc/hosts and add 127.0.0.1 app.dbths91.test
+- it will be accessible via app.dbths91.test:3000 or localhost:3000
+
+### `Production Environment`
+- docker-compose -f docker-compose-prod.yml up -d --build
+
 ## Overview
 
 1. [Install prerequisites](#install-prerequisites)
@@ -87,20 +100,6 @@ This project use the following ports :
 | Nginx SSL  | 3000 |
 
 ___
-
-## Clone the project
-
-To install [Git](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git), download it and install following the instructions :
-
-```sh
-git clone https://github.com/nanoninja/docker-nginx-php-mysql.git
-```
-
-Go to the project directory :
-
-```sh
-cd docker-nginx-php-mysql
-```
 
 ### Project tree
 
