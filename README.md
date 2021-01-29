@@ -2,18 +2,56 @@
 
 Docker running Nginx, PHP-FPM, Composer, MySQL and PHPMyAdmin.
 
+### Project tree
+
+```sh
+.
+├── Admin (dbths-batch-91-directory-client-admin)
+├── Makefile
+├── README.md
+├── data
+│   └── db
+│       ├── dumps
+│       └── mysql
+├── doc
+├── docker-compose.yml
+├── docker-compose-prod.yml
+├── etc
+│   ├── nginx
+│   │   ├── default.conf
+│   │   └── default.template.conf
+│   ├── php
+│   │   └── php.ini
+│   └── ssl
+└── web (dbths-batch-91-directory-api)
+```
+___
+
 # `FIRST OF ALL:`
-You must ensure that you have cloned the `dbths-batch-91-directory-client-admin` and `dbths-batch-91-directory-api` repositories.
+- BEFORE building the containers, You must ensure that you have cloned the `dbths-batch-91-directory-client-admin (https://github.com/alliedgrowersent/dbths-batch-91-directory-client-admin)` and `dbths-batch-91-directory-api (https://github.com/rcbgalido/dbths-batch-91-directory-api)` repositories.
+- Before cloning `dbths-batch-91-directory-api`, please remove the `web` folder then clone `dbths-batch-91-directory-api` with name `web`
 ___
 
 ### `Development Environment`
 
+- cp .env.example .env
+- cd web (cloned dbths-batch-91-directory-api) && cp .env.example .env
 - docker-compose up -d --build
-- go to your /etc/hosts and add 127.0.0.1 app.dbths91.test
+- go to your `/etc/hosts` and add 127.0.0.1 app.dbths91.test
 - it will be accessible via app.dbths91.test:3000 or localhost:3000
 
 ### `Production Environment`
+- cp .env.example .env
+- cd web (cloned dbths-batch-91-directory-api) && cp .env.example .env
 - docker-compose -f docker-compose-prod.yml up -d --build
+
+### `Composer Setup`
+- Composer install
+  - docker run --rm -v $(pwd):/app composer install
+
+More information in `Use Docker commands` section below.
+
+------
 
 ## Overview
 
