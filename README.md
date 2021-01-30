@@ -45,9 +45,16 @@ ___
 - cd web (cloned dbths-batch-91-directory-api) && cp .env.example .env
 - docker-compose -f docker-compose-prod.yml up -d --build
 
+## `Docker commands`
 ### `Composer Setup`
 - Composer install
   - docker run --rm -v $(pwd):/app composer install
+
+### `Common operations`
+- Migration
+  - docker-compose exec -T php php artisan migrate
+- Table seeder
+  - docker-compose exec -T php php artisan db:seed
 
 More information in `Use Docker commands` section below.
 
