@@ -6,7 +6,7 @@ Docker running Nginx, PHP-FPM, Composer, MySQL and PHPMyAdmin.
 
 ```sh
 .
-├── Admin (dbths-batch-91-directory-client-admin)
+├── admin (dbths-batch-91-directory-client-admin)
 ├── Makefile
 ├── README.md
 ├── data
@@ -29,21 +29,25 @@ ___
 
 # `FIRST OF ALL:`
 - BEFORE building the containers, You must ensure that you have cloned the `dbths-batch-91-directory-client-admin (https://github.com/alliedgrowersent/dbths-batch-91-directory-client-admin)` and `dbths-batch-91-directory-api (https://github.com/rcbgalido/dbths-batch-91-directory-api)` repositories.
-- Before cloning `dbths-batch-91-directory-api`, please remove the `web` folder then clone `dbths-batch-91-directory-api` with name `web`
+
+- Before cloning `dbths-batch-91-directory-client-admin`, cd inside root folder then clone `dbths-batch-91-directory-client-admin` with name `admin`
+
+- Before cloning `dbths-batch-91-directory-api`, cd inside root folder and please remove the `web` folder then clone `dbths-batch-91-directory-api` with name `web`
 ___
 
 ### `Development Environment`
-
-- cp .env.example .env
-- cd web (cloned dbths-batch-91-directory-api) && cp .env.example .env
-- docker-compose up -d --build
-- go to your `/etc/hosts` and add 127.0.0.1 app.dbths91.test
-- it will be accessible via app.dbths91.test:3000 or localhost:3000
+- In root directory, cp .env.example .env
+- In web directory (cloned dbths-batch-91-directory-api), cp .env.example .env
+- In admin directory (cloned dbths-batch-91-directory-api), cp .env.example .env
+- In root directory, docker-compose up -d --build
+- go to your `/etc/hosts` and add 127.0.0.1 app.dbths91.test (For laravel-sanctum purposes)
+- it will be accessible via app.dbths91.test:3000 or localhost:3000 (For laravel-sanctum purposes)
 
 ### `Production Environment`
-- cp .env.example .env
-- cd web (cloned dbths-batch-91-directory-api) && cp .env.example .env
-- docker-compose -f docker-compose-prod.yml up -d --build
+- In root directory, cp .env.example .env
+- In web directory (cloned dbths-batch-91-directory-api), cp .env.example .env
+- In admin directory (cloned dbths-batch-91-directory-api), cp .env.example .env
+- In root directory, docker-compose -f docker-compose-prod.yml up -d --build
 
 ## `Docker commands`
 ### `Composer Setup`
@@ -51,6 +55,8 @@ ___
   - docker run --rm -v $(pwd):/app composer install
 
 ### `Common operations`
+- Generate key
+ - docker-compose exec -T php php artisan key:generate
 - Migration
   - docker-compose exec -T php php artisan migrate
 - Table seeder
